@@ -13,7 +13,7 @@ class HomeView extends GetView<HomeController> {
     return Scaffold(
       backgroundColor: AppColors.screenBgColor,
       appBar: AppBar(
-        title: Text("Posts"),
+        title: Text("Assignment Two(Hive)"),
       ),
       body: Obx(() {
         if (controller.isLoading.value) {

@@ -1,4 +1,4 @@
-package bdcalling.com.bd_calling
+package com.hive.app
 
 import io.flutter.embedding.android.FlutterActivity
 

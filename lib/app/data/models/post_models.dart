@@ -1,28 +1,20 @@
-// class PostModel {
-//   final int id;
-//   final String title;
-//   final String body;
-//
-//   PostModel({required this.id, required this.title, required this.body});
-//
-//   factory PostModel.fromJson(Map<String, dynamic> json) {
-//     return PostModel(
-//       id: json['id'],
-//       title: json['title'],
-//       body: json['body'],
-//     );
-//   }
-// }
 import 'dart:convert';
+import 'package:hive/hive.dart';
 
-List<PostModel> postModelFromJson(String str) => List<PostModel>.from(json.decode(str).map((x) => PostModel.fromJson(x)));
+part 'post_models.g.dart';
 
-String postModelToJson(List<PostModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
-
-class PostModel {
+@HiveType(typeId: 0) // Unique typeId for Hive serialization
+class PostModel extends HiveObject {
+  @HiveField(0)
   final int? userId;
+
+  @HiveField(1)
   final int? id;
+
+  @HiveField(2)
   final String? title;
+
+  @HiveField(3)
   final String? body;
 
   PostModel({
@@ -46,3 +38,10 @@ class PostModel {
     "body": body,
   };
 }
+
+// JSON Parsing Helpers
+List<PostModel> postModelFromJson(String str) =>
+    List<PostModel>.from(json.decode(str).map((x) => PostModel.fromJson(x)));
+
+String postModelToJson(List<PostModel> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
